@@ -1,0 +1,19 @@
+---
+motd_header: |
+
+    ________          __          .__  ________
+    \_____  \   ____ |  | __ ____ |  | \______ \   ____   _____
+     /   |   \ /    \|  |/ // __ \|  |  |    |  \ /  _ \ /     \
+    /    |    \   |  \    <\  ___/|  |__|    `   (  <_> )  Y Y  \
+    \_______  /___|  /__|_ \\___  >____/_______  /\____/|__|_|  /
+            \/     \/     \/    \/             \/             \/
+motd_info:
+    FQDN: "   {{ ansible_hostname }}.{{ ansible_domain }}"
+    Distro: " {{ ansible_distribution }} {{ ansible_distribution_version }} {{ ansible_distribution_release }}"
+    Kernel: " {{ ansible_kernel }}"
+    Type: "   {{ ansible_virtualization_type if ansible_virtualization_role == 'guest' else 'physical' }}"
+    CPUs: "   {{ ansible_processor_vcpus }} Core"
+    RAM: "    {{ (ansible_memtotal_mb / 1024) | round(1) }} GB"
+    IPv4: "   {{ ansible_default_ipv4.address }}"
+    IPv6: "   {{ ansible_default_ipv6.address | default('-') }}"
+motd_footer: " "

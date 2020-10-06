@@ -1,0 +1,13 @@
+  {{- motd_header }}
+{% for key, value in motd_info.items() | sort %}
+{%   if value is sameas true %}
+    {{ key }}
+{%   elif value is string or value is number %}
+    {{ key }}: {{ value }}
+{%   else %}
+{%     for v in value %}
+    {{ key }}: {{ v }}
+{%     endfor %}
+{%   endif %}
+{% endfor %}
+{{ motd_footer }}
